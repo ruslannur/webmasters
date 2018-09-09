@@ -1,0 +1,32 @@
+#Options -MultiViews
+#RewriteEngine On
+
+RewriteBase /webmasters
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(?:css|js|jpeg|gif|png)$ [NC]
+#RewriteRule .* index.php [L]
+#RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+#RewriteRule ^/?([^./]+)$ index.php?lang=ru&url=$1  
+
+RewriteRule ^([a-zA-Z_]+)/$ ru/$1 [R]
+#RewriteRule ^(.*)$ ru/$1  [R]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteRule ^([^./]+)/$ index.php?lang=$1&url=login
+    RewriteRule ^([a-z]{2})$ index.php?lang=$1&url=login
+
+#RewriteRule ^([^./]+)/([^./]+)$ index.php?lang=$1&url=$2 [QSA,L]
+#RewriteRule ^([^./]+)/(.+)$ index.php?lang=$1&url=$2 [QSA,L]
+RewriteRule ^([a-z]{2})/(.+)$ index.php?lang=$1&url=$2 [QSA,L]
+
+Options -Indexes
+#RewriteRule .* index.php/$0 [PT]
+
